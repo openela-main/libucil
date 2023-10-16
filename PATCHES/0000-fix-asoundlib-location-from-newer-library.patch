@@ -1,0 +1,14 @@
+diff --git a/src/ucil_alsa.c b/src/ucil_alsa.c
+index 605ccaf..beccd34 100644
+--- a/src/ucil_alsa.c
++++ b/src/ucil_alsa.c
+@@ -29,7 +29,7 @@
+ #include "ucil_alsa.h"
+ 
+ #include <stdlib.h>
+-#include <asoundlib.h>
++#include <alsa/asoundlib.h>
+ #include <glib-2.0/glib.h>
+ /* #if UCIL_DEBUG */
+ #define DEBUG
+
