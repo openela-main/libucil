@@ -1,7 +1,7 @@
 Summary:	Library to render text and graphic overlays onto video images
 Name:		libucil
 Version:	0.9.10
-Release:	16%{?dist}
+Release:	17%{?dist}
 License:	GPLv2+
 Group:		System Environment/Libraries
 URL:		http://www.unicap-imaging.org/
@@ -15,6 +15,9 @@ Patch1:		libucil-0.9.10-leaks.patch
 
 # fix some compile-time warnings
 Patch2:		libucil-0.9.10-warnings.patch
+
+# asoundlib.h is alsa/asoundlib.h meanwhile
+Patch3:		libucil-0.9.10-include-alsa.patch
 
 BuildRequires:	autoconf, automake, gettext-devel, libtool
 BuildRequires:	intltool, /usr/bin/perl, perl(XML::Parser), gettext, gtk-doc >= 1.4
@@ -45,6 +48,7 @@ documentation of the library, too.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 # fixes for gtk-doc 1.26
 sed -i -e '/^DOC_SOURCE_DIR/s/--source-dir=//g' doc/libucil/Makefile.am
 mkdir -p m4
@@ -82,6 +86,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gtk-doc/html/%{name}
 
 %changelog
+* Tue May 30 2023 Vitezslav Crhonek <vcrhonek@redhat.com> - 0.9.10-17
+- alsa/asoundlib.h should be used instead of asoundlib.h since alsa-1.1.9
+  Resolves: #2108023
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.10-16
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
